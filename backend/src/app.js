@@ -3,8 +3,10 @@ import dotenv from "dotenv"
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import apiResponse from "./utils/apiResponse.js"
-
+import path from 'path';
 dotenv.config({path: './.env'});
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -45,6 +47,11 @@ app.use('/api/v1/book', bookRouter)
 app.use('/api/v1/loan', loneRouter)
 app.use('/api/v1/user', userRouter)
 
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+});
 
 
 
