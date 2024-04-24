@@ -47,7 +47,7 @@ app.use('/api/v1/book', bookRouter)
 app.use('/api/v1/loan', loneRouter)
 app.use('/api/v1/user', userRouter)
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
